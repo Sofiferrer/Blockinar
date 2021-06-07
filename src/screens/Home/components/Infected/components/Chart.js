@@ -19,7 +19,7 @@ const Chart = () => {
         const month = completeDate.getMonth() + 1;
         const day = completeDate.getDate();
         const date = `${day} / ${month} / ${year}`;
-
+        console.log(date)
         if (!dates.includes(date)) {
             dates.push(date)
         }
@@ -38,7 +38,7 @@ const Chart = () => {
                         datasets: [
                             {
                                 label: 'Progresion contagios',
-                                data: [45, 10, 1],
+                                data: [45, 10, 6],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                 ],

@@ -12,6 +12,8 @@ const InfoTable = () => {
         })
     }, []);
 
+    console.log(infectedPeople)
+
     const totalInfected = infectedPeople && infectedPeople.length;
 
     const getDate = (miliseconds) => {
@@ -30,8 +32,8 @@ const InfoTable = () => {
     const today = `${day} / ${month} / ${year}`;
 
 
-    const loadTable = () => {
-        return (infectedPeople && infectedPeople.map((infected) => (
+    const loadTable = (list) => {
+        return (list && list.map((infected) => (
             <tr key={infected.id} style={{ backgroundColor: `${infected.live ? "white" : "rgba(255, 99, 132, 0.4)"}` }}>
                 <td>{getDate(`${infected.infect_date}`)}</td>
                 <td>{infected.first_name}</td>
@@ -41,16 +43,20 @@ const InfoTable = () => {
                 <td>{infected.female ? "Femenino" : "Masculino"}</td>
             </tr>
         )))
-
     }
 
     const ordenar = () => {
-        infectedPeople.sort(function (prev, next) {
-            return prev.age - next.age
-        })
+        infectedPeople.sort(function (a, b) {
+            return a.age - b.age;
+        });
         console.log(infectedPeople)
-        loadTable();
+        const table = document.getElementById('dataTable');
+        const tbody = table.getElementsByTagName('tbody')[0];
+        tbody.innerHTML = '';
+        loadTable(infectedPeople);
     }
+
+    console.log(infectedPeople)
 
     return (
         <div>
@@ -68,7 +74,7 @@ const InfoTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {loadTable()}
+                        {loadTable(infectedPeople)}
                     </tbody>
                 </Table>
             </div>

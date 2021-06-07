@@ -26,16 +26,19 @@ const ModalForm = () => {
     }
 
     const handleSubmit = async () => {
-        await api({
-            method: "POST",
-            headers: {
-                'Content-Type': 'Application/json'
-            },
-            url: "/infected",
-            body: JSON.stringify(infectedPerson),
-        })
-        console.log(infectedPerson)
-        handleClose();
+        if (firstName && lastName) {
+            await api({
+                method: "POST",
+                headers: {
+                    'Content-Type': 'Application/json'
+                },
+                url: "/infected",
+                body: JSON.stringify(infectedPerson),
+            })
+            handleClose();
+        } else {
+            alert('Los campos Nombre y Apellido son obligatorios')
+        }
     }
 
     return (
@@ -50,7 +53,7 @@ const ModalForm = () => {
                     table='dataTable'
                     filename='Tabla-Infectados'
                     sheet='Infectados'
-                    buttonText='Exportar'
+                    buttonText='Exportar Excel'
                 />
             </div>
 
@@ -67,10 +70,11 @@ const ModalForm = () => {
                     <Form onSubmit={handleSubmit}>
                         <Row>
                             <Col>
-                                <Form.Control type="text" name="name" id="name" placeholder="Nombre" onChange={(event) => setFirstName(event.target.value)} />
+                                <Form.Control type="text" name="name" id="name"
+                                    required placeholder="Nombre" onChange={(event) => setFirstName(event.target.value)} />
                             </Col>
                             <Col>
-                                <Form.Control type="text" name="lastName" id="lastName" placeholder="Apellido" onChange={(event) => setLastName(event.target.value)} />
+                                <Form.Control type="text" name="lastName" id="lastName" required placeholder="Apellido" onChange={(event) => setLastName(event.target.value)} />
                             </Col>
                         </Row>
                         <br></br>
