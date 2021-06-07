@@ -3,8 +3,8 @@ import "./style.css"
 
 const Header = () => {
     return (
-        <div className="footer-container">
-            <h1>Header</h1>
+        <div className="header-container">
+            <h1>Situacion actual de COVID-19 en el mundo</h1>
         </div>
     );
 }

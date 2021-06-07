@@ -5,7 +5,6 @@ const getInfected = async () => {
         method: "get",
         url: "/infected",
     });
-    // console.log(data.data)
     return data.data;
 };
 

@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { countries } from "../../../../api/countries"
-import "./style.css";
+import React from "react";
+import { List, Chart } from "./components"
 
 const Countries = () => {
 
-    const [countriesList, setCountriesList] = useState();
-
-    useEffect(() => {
-        countries.getCountries().then((response) => {
-            setCountriesList(response);
-        })
-    }, []);
-
-    //console.log(countriesList)
-
     return (
         <div>
-            <h1>Countries</h1>
-            {countriesList && countriesList.map((country) => (
-                <h2 key={country.id}>{country.name.split('(', 1)}</h2>
-            ))}
+            <h3 style={{ backgroundColor: 'rgb(87, 234, 154)', textAlign: 'center', marginBottom: '5vh', marginTop: '5vh' }}>Paises que registran contagios</h3>
+            <div style={{ display: "flex" }}>
+                <List />
+                <Chart />
+            </div>
         </div>
+
     )
 }
 
