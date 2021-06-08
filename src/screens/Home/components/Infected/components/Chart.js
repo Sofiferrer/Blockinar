@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2"
-import { infected } from "../../../../../api/infected";
 
-const Chart = () => {
-
-    const [infectedPeople, setInfectedPeople] = useState();
-
-    useEffect(() => {
-        infected.getInfected().then((response) => {
-            setInfectedPeople(response);
-        })
-    }, []);
+const Chart = ({ data }) => {
 
     const dates = [];
     const getDates = (miliseconds) => {
@@ -26,7 +17,7 @@ const Chart = () => {
         return (dates)
     }
 
-    infectedPeople && infectedPeople.map((infected) => getDates(infected.infect_date))
+    data && data.map((infected) => getDates(infected.infect_date))
 
 
     return (

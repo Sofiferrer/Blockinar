@@ -1,22 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
-import { infected } from '../../../../../api/infected'
-import { COLUMNS } from './columns'
 
-const BasicTable = () => {
 
-    const [infectedPeople, setInfectedPeople] = useState();
 
-    useEffect(() => {
-        infected.getInfected().then((response) => {
-            setInfectedPeople(response);
-        })
-    }, []);
+const BasicTable = ({ datos, columnas }) => {
 
-    console.log(infectedPeople)
-
-    const columns = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => infectedPeople, [infectedPeople])
+    const columns = useMemo(() => columnas, [])
+    const data = useMemo(() => datos, [])
 
     const tableInstance = useTable({
         columns,
@@ -54,7 +44,6 @@ const BasicTable = () => {
                             )
                         })
                     }
-
                 </tbody>
             </table>
         </div>
