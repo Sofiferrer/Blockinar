@@ -1,11 +1,11 @@
 import React from "react";
-import { InfoTable, Chart, ModalForm } from "./components"
+import { BasicTable, Chart, InfoTable, ModalForm } from "./components"
 
 const Infected = () => {
 
     return (
         <div>
-            <InfoTable />
+            <BasicTable />
             <ModalForm />
             <Chart />
         </div>
