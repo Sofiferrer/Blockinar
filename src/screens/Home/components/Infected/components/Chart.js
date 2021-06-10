@@ -10,14 +10,27 @@ const Chart = ({ data }) => {
         const month = completeDate.getMonth() + 1;
         const day = completeDate.getDate();
         const date = `${day} / ${month} / ${year}`;
-        console.log(date)
         if (!dates.includes(date)) {
             dates.push(date)
         }
         return (dates)
     }
 
+    const stringifyDate = (miliseconds) => {
+        const completeDate = new Date(miliseconds * 1000);
+        const year = completeDate.getFullYear();
+        const month = completeDate.getMonth() + 1;
+        const day = completeDate.getDate();
+        const date = `${day} / ${month} / ${year}`;
+        return (date)
+    }
+
     data && data.map((infected) => getDates(infected.infect_date))
+
+    const porFecha = () => {
+        const infectedPerDate = (date) => data.filter((d) => stringifyDate(d.infect_date) === date).length
+        return dates.map((date) => infectedPerDate(date))
+    }
 
 
     return (
@@ -29,7 +42,7 @@ const Chart = ({ data }) => {
                         datasets: [
                             {
                                 label: 'Progresion contagios',
-                                data: [45, 10, 6],
+                                data: porFecha(),
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                 ],

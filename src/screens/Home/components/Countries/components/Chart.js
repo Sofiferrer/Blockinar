@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { countries } from "../../../../../api/countries"
+import React from "react";
 import { Pie } from "react-chartjs-2"
 
-const Chart = () => {
-
-    const [countriesList, setCountriesList] = useState();
-
-    useEffect(() => {
-        countries.getCountries().then((response) => {
-            setCountriesList(response);
-        })
-    }, []);
+const Chart = ({ data }) => {
 
     const countriesNames = [];
     const getCountriesNames = (countryName) => {
@@ -24,8 +15,8 @@ const Chart = () => {
         return (countriesInfections)
     }
 
-    countriesList && countriesList.map((country) => getCountriesNames(country.name))
-    countriesList && countriesList.map((country) => getCountriesInfections(country.infected))
+    data.map((country) => getCountriesNames(country.name))
+    data.map((country) => getCountriesInfections(country.infected))
 
     return (
         <div style={{ width: '80%' }}>
