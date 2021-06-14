@@ -1,5 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2"
+import { stringifyDate } from "../../../../../helpers/functions";
 
 const Chart = ({ data }) => {
 
@@ -9,20 +10,11 @@ const Chart = ({ data }) => {
         const year = completeDate.getFullYear();
         const month = completeDate.getMonth() + 1;
         const day = completeDate.getDate();
-        const date = `${day} / ${month} / ${year}`;
+        const date = `${day}-${month}-${year}`;
         if (!dates.includes(date)) {
             dates.push(date)
         }
         return (dates)
-    }
-
-    const stringifyDate = (miliseconds) => {
-        const completeDate = new Date(miliseconds * 1000);
-        const year = completeDate.getFullYear();
-        const month = completeDate.getMonth() + 1;
-        const day = completeDate.getDate();
-        const date = `${day} / ${month} / ${year}`;
-        return (date)
     }
 
     data && data.map((infected) => getDates(infected.infect_date))

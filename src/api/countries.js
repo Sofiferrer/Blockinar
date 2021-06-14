@@ -5,7 +5,6 @@ const getCountries = async () => {
         method: "get",
         url: "/countries",
     });
-    // console.log(data.data)
     return data.data;
 };
 
