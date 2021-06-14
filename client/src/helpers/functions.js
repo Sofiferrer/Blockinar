@@ -1,3 +1,4 @@
+//Obtengo fecha del dia que corre
 const getCurrentDate = () => {
     const newDate = new Date();
     const year = newDate.getFullYear();
@@ -6,40 +7,26 @@ const getCurrentDate = () => {
     return `${year}-${month}-${day}`;
 };
 
-const stringifyDate = (miliseconds) => {
-    const completeDate = new Date(miliseconds * 1000);
-    const year = completeDate.getFullYear();
-    const month = completeDate.getMonth() + 1;
-    const day = completeDate.getDate();
-    const date = `${day}-${month}-${year}`;
+//Devuelvo la fecha como un string
+const stringifyDate = (infectDate) => {
+    const completeDate = infectDate;
+    const date = completeDate.split('T', 1);
     return (date)
 };
 
-const getDates = (miliseconds) => {
-    const dates = [];
-    const completeDate = new Date(miliseconds * 1000);
-    const year = completeDate.getFullYear();
-    const month = completeDate.getMonth() + 1;
-    const day = completeDate.getDate();
-    const date = `${day}-${month}-${year}`;
-    if (!dates.includes(date)) {
-        dates.push(date)
-    }
-    return (dates)
-};
-
+//Funcion que carga datos en la tabla
 const loadTable = (list) => {
     return (list && list.map((infected) => (
         <tr key={infected.id} style={{ backgroundColor: `${infected.live ? "white" : "rgba(255, 99, 132, 0.4)"}` }}>
-            <td>{stringifyDate(`${infected.infect_date}`)}</td>
+            <td>{stringifyDate(infected.infect_date)}</td>
             <td>{infected.first_name}</td>
             <td>{infected.last_name}</td>
             <td>{infected.age}</td>
             <td>{infected.country}</td>
-            <td>{infected.female ? "Femenino" : "Masculino"}</td>
+            <td>{infected.gendre}</td>
         </tr>
     )))
 };
 
 
-export { getCurrentDate, getDates, stringifyDate, loadTable }
+export { getCurrentDate, stringifyDate, loadTable }

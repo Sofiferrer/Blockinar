@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
-//import { api } from "../../../../../api/api"
 import { getCurrentDate } from "../../../../../helpers/functions";
 
 const ModalForm = () => {
@@ -16,32 +15,6 @@ const ModalForm = () => {
     const [age, setAge] = useState('');
     const [live, setLive] = useState('');
     const [female, setFemale] = useState('');
-
-    // const infectedPerson = {
-    //     first_name: firstName,
-    //     last_name: lastName,
-    //     country: country,
-    //     live: live,
-    //     age: age,
-    //     female: female
-    // }
-
-    //Seteo datos a la API proporcionada
-    // const handleSubmit = async () => {
-    //     if (firstName && lastName) {
-    //         await api({
-    //             method: "POST",
-    //             headers: {
-    //                 'Content-Type': 'Application/json'
-    //             },
-    //             url: "/infected",
-    //             body: JSON.stringify(infectedPerson),
-    //         })
-    //         handleClose();
-    //     } else {
-    //         alert('Los campos Nombre y Apellido son obligatorios')
-    //     }
-    // }
 
     //Seteo datos a mi base de datos local
     const handleSubmit = () => {

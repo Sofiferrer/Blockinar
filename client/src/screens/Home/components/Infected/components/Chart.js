@@ -4,13 +4,10 @@ import { stringifyDate } from "../../../../../helpers/functions";
 
 const Chart = ({ data }) => {
 
+    //Obtengo array de fechas registradas
     const dates = [];
-    const getDates = (miliseconds) => {
-        const completeDate = new Date(miliseconds * 1000);
-        const year = completeDate.getFullYear();
-        const month = completeDate.getMonth() + 1;
-        const day = completeDate.getDate();
-        const date = `${day}-${month}-${year}`;
+    const getDates = (infectDate) => {
+        const date = infectDate;
         if (!dates.includes(date)) {
             dates.push(date)
         }
@@ -19,8 +16,9 @@ const Chart = ({ data }) => {
 
     data && data.map((infected) => getDates(infected.infect_date))
 
+    //saco cantidad de casos por cada fecha registrada
     const porFecha = () => {
-        const infectedPerDate = (date) => data.filter((d) => stringifyDate(d.infect_date) === date).length
+        const infectedPerDate = (date) => data.filter((d) => (d.infect_date) === date).length
         return dates.map((date) => infectedPerDate(date))
     }
 
@@ -30,7 +28,7 @@ const Chart = ({ data }) => {
             <div style={{ height: '50vh', width: '80%', margin: 'auto' }}>
                 <Line
                     data={{
-                        labels: dates,
+                        labels: dates.map((date) => stringifyDate(date)),
                         datasets: [
                             {
                                 label: 'Progresion contagios',
