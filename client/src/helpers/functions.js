@@ -1,3 +1,4 @@
+//Obtengo fecha del dia que corre
 const getCurrentDate = () => {
     const newDate = new Date();
     const year = newDate.getFullYear();
@@ -6,6 +7,7 @@ const getCurrentDate = () => {
     return `${year}-${month}-${day}`;
 };
 
+//Muestro las fechas como string
 const stringifyDate = (miliseconds) => {
     const completeDate = new Date(miliseconds * 1000);
     const year = completeDate.getFullYear();
@@ -15,19 +17,7 @@ const stringifyDate = (miliseconds) => {
     return (date)
 };
 
-const getDates = (miliseconds) => {
-    const dates = [];
-    const completeDate = new Date(miliseconds * 1000);
-    const year = completeDate.getFullYear();
-    const month = completeDate.getMonth() + 1;
-    const day = completeDate.getDate();
-    const date = `${day}-${month}-${year}`;
-    if (!dates.includes(date)) {
-        dates.push(date)
-    }
-    return (dates)
-};
-
+//Funcion que carga datos en la tabla.
 const loadTable = (list) => {
     return (list && list.map((infected) => (
         <tr key={infected.id} style={{ backgroundColor: `${infected.live ? "white" : "rgba(255, 99, 132, 0.4)"}` }}>
@@ -42,4 +32,4 @@ const loadTable = (list) => {
 };
 
 
-export { getCurrentDate, getDates, stringifyDate, loadTable }
+export { getCurrentDate, stringifyDate, loadTable }

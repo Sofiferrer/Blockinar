@@ -9,6 +9,7 @@ const InfoTable = ({ data }) => {
 
     const totalInfected = infectedPeople && infectedPeople.length;
 
+    //Ordeno tabla por edad
     const order = () => {
         let tableData = [];
         if (sortOrder === 'asc') {

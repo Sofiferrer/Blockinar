@@ -4,6 +4,7 @@ import { stringifyDate } from "../../../../../helpers/functions";
 
 const Chart = ({ data }) => {
 
+    //Obtengo fehas que registran contagios para el grafico.
     const dates = [];
     const getDates = (miliseconds) => {
         const completeDate = new Date(miliseconds * 1000);
@@ -19,7 +20,8 @@ const Chart = ({ data }) => {
 
     data && data.map((infected) => getDates(infected.infect_date))
 
-    const porFecha = () => {
+    //Calculo cantidad de contagio por cada fecha registrada.
+    const perDate = () => {
         const infectedPerDate = (date) => data.filter((d) => stringifyDate(d.infect_date) === date).length
         return dates.map((date) => infectedPerDate(date))
     }
@@ -34,7 +36,7 @@ const Chart = ({ data }) => {
                         datasets: [
                             {
                                 label: 'Progresion contagios',
-                                data: porFecha(),
+                                data: perDate(),
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                 ],
